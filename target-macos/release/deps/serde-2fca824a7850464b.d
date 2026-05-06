@@ -1,0 +1,14 @@
+/Volumes/Software/Mi software/acelinkhelper/target-macos/release/deps/serde-2fca824a7850464b.d: /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /Volumes/Software/Mi\ software/acelinkhelper/target-macos/release/build/serde-af01a792c82b84d8/out/private.rs
+
+/Volumes/Software/Mi software/acelinkhelper/target-macos/release/deps/libserde-2fca824a7850464b.rlib: /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /Volumes/Software/Mi\ software/acelinkhelper/target-macos/release/build/serde-af01a792c82b84d8/out/private.rs
+
+/Volumes/Software/Mi software/acelinkhelper/target-macos/release/deps/libserde-2fca824a7850464b.rmeta: /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs /Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs /Volumes/Software/Mi\ software/acelinkhelper/target-macos/release/build/serde-af01a792c82b84d8/out/private.rs
+
+/Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/lib.rs:
+/Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/integer128.rs:
+/Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/mod.rs:
+/Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/de.rs:
+/Users/Letzzar/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.228/src/private/ser.rs:
+/Volumes/Software/Mi\ software/acelinkhelper/target-macos/release/build/serde-af01a792c82b84d8/out/private.rs:
+
+# env-dep:OUT_DIR=/Volumes/Software/Mi software/acelinkhelper/target-macos/release/build/serde-af01a792c82b84d8/out

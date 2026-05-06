@@ -1,0 +1,50 @@
+[package]
+name = "acelinkhelper"
+version = "0.1.0"
+edition = "2021"
+
+[build-dependencies]
+winres = "0.1"
+
+[dependencies]
+# Configuration persistence
+confy = "0.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# System tray
+tray-icon = "0.1"
+
+# Image processing
+image = "0.24"
+
+# Process management
+open = "5.0"
+
+# GUI (egui/eframe)
+egui = "0.27"
+eframe = "0.27"
+epaint = "0.27"
+
+# Error handling
+thiserror = "1.0"
+
+# Logging
+log = "0.4"
+env_logger = "0.11"
+
+[target.'cfg(windows)'.dependencies]
+winreg = "0.52"
+winapi = { version = "0.3", features = ["processthreadsapi", "handleapi", "winnt"] }
+
+[target.'cfg(not(windows))'.dependencies]
+libc = "0.2"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+plist = "1.6"
+objc = "0.2"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
