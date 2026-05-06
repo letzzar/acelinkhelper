@@ -19,3 +19,5 @@ RESUMEN_ENTREGA.txt
 .vscode/
 .idea/
 *.swp
+
+target-macos/
