@@ -1,4 +1,4 @@
-# AcelinkHelper
+﻿# AcelinkHelper
 
 **English** | [Español](#español)
 
@@ -304,4 +304,4 @@ Binario en: `target/release/acelinkhelper` (macOS/Linux) o `target\release\aceli
 
 ## Licencia
 
-MIT © 2026 letzzar
+GNU General Public License v3.0 — ver [LICENSE](LICENSE)
