@@ -15,6 +15,17 @@ A lightweight desktop tray app for macOS and Windows that intercepts `acestream:
 - Persistent configuration (server address, VLC path)
 - Auto-detects system language (Spanish / English)
 
+## Download
+
+Download the latest version from the [releases page](https://github.com/letzzar/acelinkhelper/releases/latest):
+
+| Platform | File |
+|---|---|
+| Windows (x86_64) | [acelinkhelper-windows-x86_64.zip](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-windows-x86_64.zip) |
+| macOS (Apple Silicon) | [acelinkhelper-macos-arm64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-macos-arm64.tar.gz) |
+| macOS (Intel) | [acelinkhelper-macos-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-macos-x86_64.tar.gz) |
+| Linux (x86_64) | [acelinkhelper-linux-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-linux-x86_64.tar.gz) |
+
 ## Server Setup (Docker)
 
 AcelinkHelper is designed to work with the AceStream engine running in **Docker**. This is the recommended approach — no native AceStream installation needed, works on any machine with Docker, and optionally routes all AceStream traffic through a VPN for privacy.
@@ -168,6 +179,17 @@ Aplicación ligera de bandeja del sistema para macOS y Windows que intercepta UR
 - Icono en la bandeja del sistema con acceso rápido a ajustes
 - Configuración persistente (dirección del servidor, ruta de VLC)
 - Detección automática del idioma del sistema (español / inglés)
+
+## Descarga
+
+Descarga la última versión desde la [página de releases](https://github.com/letzzar/acelinkhelper/releases/latest):
+
+| Plataforma | Archivo |
+|---|---|
+| Windows (x86_64) | [acelinkhelper-windows-x86_64.zip](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-windows-x86_64.zip) |
+| macOS (Apple Silicon) | [acelinkhelper-macos-arm64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-macos-arm64.tar.gz) |
+| macOS (Intel) | [acelinkhelper-macos-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-macos-x86_64.tar.gz) |
+| Linux (x86_64) | [acelinkhelper-linux-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-linux-x86_64.tar.gz) |
 
 ## Configuración del Servidor (Docker)
 
