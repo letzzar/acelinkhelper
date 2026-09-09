@@ -21,3 +21,4 @@ RESUMEN_ENTREGA.txt
 *.swp
 
 target-macos/
+dist/

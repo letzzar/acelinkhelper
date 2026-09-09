@@ -17,12 +17,6 @@ jobs:
           - os: windows-latest
             target: x86_64-pc-windows-msvc
             asset: acelinkhelper-windows-x86_64.zip
-          - os: macos-latest
-            target: aarch64-apple-darwin
-            asset: acelinkhelper-macos-arm64.tar.gz
-          - os: macos-latest
-            target: x86_64-apple-darwin
-            asset: acelinkhelper-macos-x86_64.tar.gz
           - os: ubuntu-latest
             target: x86_64-unknown-linux-gnu
             asset: acelinkhelper-linux-x86_64.tar.gz
@@ -50,13 +44,35 @@ jobs:
         if: runner.os == 'Windows'
         run: Compress-Archive -Path "target/${{ matrix.target }}/release/acelinkhelper.exe" -DestinationPath "${{ matrix.asset }}"
 
-      - name: Package (Unix)
-        if: runner.os != 'Windows'
+      - name: Package (Linux)
+        if: runner.os == 'Linux'
         run: tar -czf "${{ matrix.asset }}" -C "target/${{ matrix.target }}/release" acelinkhelper
 
       - name: Upload to release
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ matrix.asset }}
+          name: AcelinkHelper ${{ github.ref_name }}
+          generate_release_notes: true
+
+  macos:
+    # One universal (arm64 + x86_64) .app shipped as a drag-and-drop DMG.
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+
+      - name: Build universal DMG
+        run: ./scripts/build-macos-dmg.sh "${GITHUB_REF_NAME#v}"
+
+      - name: Upload to release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/AcelinkHelper-*-universal.dmg
           name: AcelinkHelper ${{ github.ref_name }}
           generate_release_notes: true

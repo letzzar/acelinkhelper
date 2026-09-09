@@ -22,9 +22,18 @@ Download the latest version from the [releases page](https://github.com/letzzar/
 | Platform | File |
 |---|---|
 | Windows (x86_64) | [acelinkhelper-windows-x86_64.zip](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-windows-x86_64.zip) |
-| macOS (Apple Silicon) | [acelinkhelper-macos-arm64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-macos-arm64.tar.gz) |
-| macOS (Intel) | [acelinkhelper-macos-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-macos-x86_64.tar.gz) |
+| macOS (universal — Apple Silicon + Intel) | [AcelinkHelper-1.0.0-universal.dmg](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/AcelinkHelper-1.0.0-universal.dmg) |
 | Linux (x86_64) | [acelinkhelper-linux-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-linux-x86_64.tar.gz) |
+
+### macOS — first launch
+
+The DMG is signed ad-hoc but not notarized, so Gatekeeper blocks it on first open. Drag **AcelinkHelper** to `/Applications`, then run once:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/AcelinkHelper.app
+```
+
+Alternatively: right-click the app → **Open** → **Open**.
 
 ## Server Setup (Docker)
 
@@ -152,6 +161,14 @@ cargo build --release
 
 Binary: `target/release/acelinkhelper` (macOS/Linux) or `target\release\acelinkhelper.exe` (Windows).
 
+On macOS you can build the distributable universal `.app` + DMG with:
+
+```bash
+./scripts/build-macos-dmg.sh
+```
+
+Output: `dist/AcelinkHelper-<version>-universal.dmg`.
+
 ## Usage
 
 1. Start the AceStream Docker container (see Server Setup above)
@@ -187,9 +204,18 @@ Descarga la última versión desde la [página de releases](https://github.com/l
 | Plataforma | Archivo |
 |---|---|
 | Windows (x86_64) | [acelinkhelper-windows-x86_64.zip](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-windows-x86_64.zip) |
-| macOS (Apple Silicon) | [acelinkhelper-macos-arm64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-macos-arm64.tar.gz) |
-| macOS (Intel) | [acelinkhelper-macos-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-macos-x86_64.tar.gz) |
+| macOS (universal — Apple Silicon + Intel) | [AcelinkHelper-1.0.0-universal.dmg](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/AcelinkHelper-1.0.0-universal.dmg) |
 | Linux (x86_64) | [acelinkhelper-linux-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.0/acelinkhelper-linux-x86_64.tar.gz) |
+
+### macOS — primer arranque
+
+El DMG está firmado ad-hoc pero no notarizado, así que Gatekeeper lo bloquea la primera vez. Arrastra **AcelinkHelper** a `/Aplicaciones` y ejecuta una vez:
+
+```bash
+xattr -dr com.apple.quarantine /Applications/AcelinkHelper.app
+```
+
+Alternativa: clic derecho sobre la app → **Abrir** → **Abrir**.
 
 ## Configuración del Servidor (Docker)
 
@@ -316,6 +342,14 @@ cargo build --release
 ```
 
 Binario en: `target/release/acelinkhelper` (macOS/Linux) o `target\release\acelinkhelper.exe` (Windows).
+
+En macOS puedes generar el `.app` universal distribuible + DMG con:
+
+```bash
+./scripts/build-macos-dmg.sh
+```
+
+Salida: `dist/AcelinkHelper-<versión>-universal.dmg`.
 
 ## Uso
 
