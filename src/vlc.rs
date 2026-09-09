@@ -38,22 +38,39 @@ pub fn launch_vlc(url: &str) -> Result<()> {
     }
 
     #[cfg(target_os = "macos")]
+    let mut last_error_macos = String::new();
+
+    #[cfg(target_os = "macos")]
     {
         // Usar Launch Services en macOS es más confiable para aplicaciones instaladas
         // como paquetes .app, incluso si no se tiene el binario en PATH.
-        if let Ok(child) = Command::new("open")
+        //
+        // La URL se pasa como documento, NO detrás de --args: con --args solo
+        // llega en el argv de main(), que ya se ejecutó si VLC estaba abierto,
+        // así que el segundo enlace se perdía hasta cerrar VLC.
+        //
+        // Se comprueba el código de salida de 'open': spawn() tiene éxito
+        // aunque VLC no esté instalado, y entonces nunca se probaba la ruta
+        // directa de abajo.
+        match Command::new("open")
             .arg("-a")
             .arg("VLC")
-            .arg("--args")
             .arg(url)
-            .spawn()
+            .status()
         {
-            log::info!("✅ VLC lanzado exitosamente con 'open -a VLC'");
-            log::info!("========== VLC EN EJECUCIÓN ==========");
-            drop(child);
-            return Ok(());
-        } else {
-            log::warn!("No se pudo lanzar VLC con open -a VLC. Intentando ruta directa...");
+            Ok(status) if status.success() => {
+                log::info!("✅ VLC lanzado exitosamente con 'open -a VLC'");
+                log::info!("========== VLC EN EJECUCIÓN ==========");
+                return Ok(());
+            }
+            Ok(status) => {
+                log::warn!("'open -a VLC' terminó con {}. Intentando ruta directa...", status);
+                last_error_macos = format!("'open -a VLC' terminó con {}", status);
+            }
+            Err(e) => {
+                log::warn!("No se pudo ejecutar 'open': {}. Intentando ruta directa...", e);
+                last_error_macos = format!("no se pudo ejecutar 'open': {}", e);
+            }
         }
 
         vlc_paths.extend(vec![
@@ -61,7 +78,12 @@ pub fn launch_vlc(url: &str) -> Result<()> {
         ]);
     }
 
+    #[allow(unused_mut)]
     let mut last_error = String::from("VLC no encontrado en rutas estándar");
+    #[cfg(target_os = "macos")]
+    if !last_error_macos.is_empty() {
+        last_error = last_error_macos;
+    }
 
     for vlc_path in vlc_paths {
         log::info!("Intentando VLC en: {}", vlc_path);
