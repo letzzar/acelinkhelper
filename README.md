@@ -178,9 +178,10 @@ Output: `dist/AcelinkHelper-<version>-universal.dmg`.
 
 ## Configuration
 
-Settings are stored automatically:
-- **macOS**: `~/Library/Application Support/acelinkhelper/`
-- **Windows**: `%APPDATA%\acelinkhelper\`
+Settings are stored automatically in `default-config.toml`:
+- **macOS**: `~/Library/Application Support/rs.acelinkhelper/`
+- **Windows**: `%APPDATA%\acelinkhelper\config\`
+- **Linux**: `~/.config/acelinkhelper/`
 
 ---
 
