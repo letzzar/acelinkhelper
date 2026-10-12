@@ -14,10 +14,7 @@ pub fn register_protocol(app_path: PathBuf) -> Result<()> {
     return register_protocol_macos(app_path);
 
     #[cfg(not(any(windows, target_os = "macos")))]
-    {
-        log::warn!("Registro de protocolo no soportado en esta plataforma");
-        Ok(())
-    }
+    return register_protocol_linux(app_path);
 }
 
 #[cfg(windows)]
@@ -25,11 +22,15 @@ fn register_protocol_windows(app_path: PathBuf) -> Result<()> {
     use winreg::enums::*;
     use winreg::RegKey;
 
-    let hkcr = RegKey::predef(HKEY_CLASSES_ROOT);
+    // HKCU\Software\Classes en lugar de HKEY_CLASSES_ROOT: un usuario sin
+    // administrador no puede crear claves en HKCR ("acceso denegado") y el
+    // registro fallaba en silencio. Windows combina HKCU\Software\Classes en
+    // HKCR, asi que el protocolo queda registrado igual, solo para este usuario.
+    let hkcu = RegKey::predef(HKEY_CURRENT_USER);
 
     // Crear la entrada para acestream://
-    let (acestream_key, _) = hkcr
-        .create_subkey("acestream")
+    let (acestream_key, _) = hkcu
+        .create_subkey("Software\\Classes\\acestream")
         .map_err(|e| AcelinkError::ProtocolRegistrationError(
             format!("No se pudo crear clave 'acestream': {}", e)
         ))?;
@@ -140,9 +141,86 @@ fn register_protocol_macos(app_path: PathBuf) -> Result<()> {
     Ok(())
 }
 
+/// Contenido del .desktop que asocia acestream:// a esta aplicacion en Linux
 #[cfg(not(any(windows, target_os = "macos")))]
-fn register_protocol_linux(_app_path: PathBuf) -> Result<()> {
-    log::warn!("Registro de protocolo no implementado para Linux");
+fn linux_desktop_entry(app_path: &str) -> String {
+    format!(
+        "[Desktop Entry]\n\
+         Type=Application\n\
+         Name=AcelinkHelper\n\
+         Comment=Abre los enlaces acestream:// en VLC\n\
+         Exec=\"{}\" %u\n\
+         Icon=vlc\n\
+         Terminal=false\n\
+         Categories=AudioVideo;\n\
+         MimeType=x-scheme-handler/acestream;\n",
+        app_path
+    )
+}
+
+#[cfg(not(any(windows, target_os = "macos")))]
+fn register_protocol_linux(app_path: PathBuf) -> Result<()> {
+    use std::fs;
+    use std::process::Command;
+
+    let app_path_str = app_path
+        .to_str()
+        .ok_or_else(|| AcelinkError::ProtocolRegistrationError(
+            "Ruta de aplicación contiene caracteres inválidos".to_string()
+        ))?;
+
+    // $XDG_DATA_HOME/applications, o ~/.local/share/applications
+    let data_home = std::env::var("XDG_DATA_HOME")
+        .ok()
+        .filter(|d| !d.is_empty())
+        .map(PathBuf::from)
+        .or_else(|| std::env::var("HOME").ok().map(|h| PathBuf::from(h).join(".local/share")))
+        .ok_or_else(|| AcelinkError::ProtocolRegistrationError(
+            "No se pudo obtener HOME".to_string()
+        ))?;
+    let apps_dir = data_home.join("applications");
+    let desktop_path = apps_dir.join("acelinkhelper.desktop");
+    let entry = linux_desktop_entry(app_path_str);
+
+    // Se llama en cada arranque: solo se reescribe si ha cambiado
+    if fs::read_to_string(&desktop_path).ok().as_deref() == Some(entry.as_str()) {
+        log::info!("Protocolo acestream:// ya registrado en Linux");
+        return Ok(());
+    }
+
+    fs::create_dir_all(&apps_dir).map_err(|e| AcelinkError::ProtocolRegistrationError(
+        format!("No se pudo crear {:?}: {}", apps_dir, e)
+    ))?;
+    fs::write(&desktop_path, &entry).map_err(|e| AcelinkError::ProtocolRegistrationError(
+        format!("No se pudo escribir {:?}: {}", desktop_path, e)
+    ))?;
+
+    // Asociar el esquema a este .desktop (si no hay xdg-mime, el MimeType del
+    // .desktop ya basta en muchos escritorios)
+    match Command::new("xdg-mime")
+        .args(["default", "acelinkhelper.desktop", "x-scheme-handler/acestream"])
+        .status()
+    {
+        Ok(status) if status.success() => {}
+        Ok(status) => log::warn!("xdg-mime terminó con {}", status),
+        Err(e) => log::warn!("No se pudo ejecutar xdg-mime: {}", e),
+    }
+    let _ = Command::new("update-desktop-database").arg(&apps_dir).status();
+
+    log::info!("Protocolo acestream:// registrado correctamente en Linux: {:?}", desktop_path);
     Ok(())
+}
+
+#[cfg(all(test, not(any(windows, target_os = "macos"))))]
+mod tests {
+    use super::linux_desktop_entry;
+
+    #[test]
+    fn desktop_entry_asocia_el_esquema_acestream() {
+        let entry = linux_desktop_entry("/home/u/.local/bin/acelinkhelper");
+        assert!(entry.starts_with("[Desktop Entry]\n"));
+        assert!(entry.contains("Exec=\"/home/u/.local/bin/acelinkhelper\" %u\n"));
+        assert!(entry.contains("MimeType=x-scheme-handler/acestream;\n"));
+    }
 }
 

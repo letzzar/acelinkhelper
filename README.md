@@ -8,7 +8,7 @@ A lightweight desktop tray app for macOS and Windows that intercepts `acestream:
 
 ## Features
 
-- Registers as the system handler for `acestream://` links
+- Registers as the system handler for `acestream://` links (Windows: for the current user, no admin rights needed; Linux: `~/.local/share/applications/acelinkhelper.desktop` + `xdg-mime`; macOS: through the app bundle)
 - Connects to a local or remote AceStream engine and retrieves the HTTP stream URL
 - Launches VLC automatically with the converted URL
 - System tray icon with quick settings access
@@ -190,7 +190,7 @@ Aplicación ligera de bandeja del sistema para macOS y Windows que intercepta UR
 
 ## Características
 
-- Se registra como manejador del sistema para enlaces `acestream://`
+- Se registra como manejador del sistema para enlaces `acestream://` (Windows: para el usuario actual, sin permisos de administrador; Linux: `~/.local/share/applications/acelinkhelper.desktop` + `xdg-mime`; macOS: a través del bundle de la app)
 - Se conecta al motor AceStream local o remoto y obtiene la URL HTTP del stream
 - Lanza VLC automáticamente con la URL convertida
 - Icono en la bandeja del sistema con acceso rápido a ajustes
