@@ -91,7 +91,7 @@ dependencies = [
 
 [[package]]
 name = "acelinkhelper"
-version = "1.0.2"
+version = "1.0.3"
 dependencies = [
  "confy",
  "eframe",

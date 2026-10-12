@@ -21,9 +21,9 @@ Download the latest version from the [releases page](https://github.com/letzzar/
 
 | Platform | File |
 |---|---|
-| Windows (x86_64) | [acelinkhelper-windows-x86_64.zip](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.2/acelinkhelper-windows-x86_64.zip) |
-| macOS (universal — Apple Silicon + Intel) | [AcelinkHelper-1.0.2-universal.dmg](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.2/AcelinkHelper-1.0.2-universal.dmg) |
-| Linux (x86_64) | [acelinkhelper-linux-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.2/acelinkhelper-linux-x86_64.tar.gz) |
+| Windows (x86_64) | [acelinkhelper-windows-x86_64.zip](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.3/acelinkhelper-windows-x86_64.zip) |
+| macOS (universal — Apple Silicon + Intel) | [AcelinkHelper-1.0.3-universal.dmg](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.3/AcelinkHelper-1.0.3-universal.dmg) |
+| Linux (x86_64) | [acelinkhelper-linux-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.3/acelinkhelper-linux-x86_64.tar.gz) |
 
 ### macOS — first launch
 
@@ -204,9 +204,9 @@ Descarga la última versión desde la [página de releases](https://github.com/l
 
 | Plataforma | Archivo |
 |---|---|
-| Windows (x86_64) | [acelinkhelper-windows-x86_64.zip](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.2/acelinkhelper-windows-x86_64.zip) |
-| macOS (universal — Apple Silicon + Intel) | [AcelinkHelper-1.0.2-universal.dmg](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.2/AcelinkHelper-1.0.2-universal.dmg) |
-| Linux (x86_64) | [acelinkhelper-linux-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.2/acelinkhelper-linux-x86_64.tar.gz) |
+| Windows (x86_64) | [acelinkhelper-windows-x86_64.zip](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.3/acelinkhelper-windows-x86_64.zip) |
+| macOS (universal — Apple Silicon + Intel) | [AcelinkHelper-1.0.3-universal.dmg](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.3/AcelinkHelper-1.0.3-universal.dmg) |
+| Linux (x86_64) | [acelinkhelper-linux-x86_64.tar.gz](https://github.com/letzzar/acelinkhelper/releases/download/v1.0.3/acelinkhelper-linux-x86_64.tar.gz) |
 
 ### macOS — primer arranque
 
