@@ -75,7 +75,7 @@ impl Config {
     pub fn validate(&self) -> Result<()> {
         if self.nas_ip.is_empty() {
             return Err(crate::error::AcelinkError::ConfigError(
-                "IP del NAS no puede estar vacía".to_string(),
+                "La dirección del servidor de medios no puede estar vacía".to_string(),
             ));
         }
         Ok(())

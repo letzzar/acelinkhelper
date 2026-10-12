@@ -33,8 +33,8 @@ impl I18n {
 
     fn server_url(&self) -> &str {
         match self.language {
-            Language::Spanish => "Dirección del Servidor NAS:",
-            Language::English => "NAS Server Address:",
+            Language::Spanish => "Dirección del Servidor de Medios:",
+            Language::English => "Media Server Address:",
         }
     }
 
